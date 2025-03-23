@@ -77,6 +77,8 @@ async function getLoginCookies(initCookie) {
   const encryptBody = encrypt(
     JSON.stringify({ username: username, password: password })
   )
+  console.error(username)
+  console.error(password)
   let data = JSON.stringify({
     encryptBody: encryptBody
   })
