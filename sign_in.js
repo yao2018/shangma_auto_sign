@@ -10,12 +10,19 @@ async function signIn() {
   if (tokenEntry === undefined) {
     throw Error('cannot get authorization')
   }
-  console.log(tokenEntry['SHM_JWT_TOKEN']);
-  let headers = getHeaders()
+  let login_config = {
+    method: 'post',
+    maxBodyLength: Infinity,
+    url: 'https://apih5.shang-ma.com/app/web/user/login',
+    headers: headers,
+    data: '{"encryptedData":"C9uObdHuFgfJgiKCtOfUcc6+d6BVaM7t5lmglQwBxOyOxihnV0va2saqBreCObrSWe4W/NrsCbnfTZAddMi3faDGQm78zZYcODz4tTOe6GEQj2kH/n8oz1NtHjxAf1hw","encryptedKey":"gstcEr1PDrX3tqo+lhN0Mt+EYtdk577aajcHDNwyuDKs/PhFLFj46LwQ/hijy8IjkxkiKN8QDizhKCJ2CxEzmswNHsQZ9PcAyCJbpj2T+wpMyPjkEyiB7WNubWRYbo1nd/A+MFWAIRfrHy0VXN6z9wLj6lfZ4yB4Sl29kR7NiB8="}'
+  }
+  const login_response = await axios.request(login_config)
+  let login_token = login_response.data.token
+
   headers.authorization = 'JwtUser '.concat(tokenEntry['SHM_JWT_TOKEN'])
-  headers = Object.assign({}, headers, {'Shm-Token': tokenEntry['SHM_JWT_TOKEN'], 'Token': tokenEntry['SHM_JWT_TOKEN']})
-  //hearders['Shm-Token'] = tokenEntry['SHM_JWT_TOKEN']
-  //hearders['Token'] = tokenEntry['SHM_JWT_TOKEN']
+  headers = Object.assign({}, headers, {'Shm-Token': login_token, 'Token': login_token})
+
   console.log(headers);
   let new_data = JSON.stringify({"encryptedData":"9llgMgEjl7Rb0a6nPCebKA==","encryptedKey":"b/rvbId0LpbRoQbQeiXklOXN1lo4hQHoOcU2gC/PKMzU8Hlb4iXjAbrZ4XVMDWd8aXK5Yd1d0V+hn4z8P9M0/+XXvdDtn4aWv/6rHmr8IYJSMbhL8c0JcCDzNgz94lKBYmlNYVHfjPLR7lMmY6tAQf1Uj5rvZvNdlnfpjpHsBF4="})
   let data = JSON.stringify({
