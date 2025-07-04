@@ -89,6 +89,7 @@ async function getLoginCookies(initCookie) {
   }
 
   const response = await axios.request(config)
+  console.log(response)
 
   if (response.headers['set-cookie']) {
     const parsedCookies = cookieParser.parse(response.headers['set-cookie'])
