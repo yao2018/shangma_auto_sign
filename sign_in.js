@@ -9,7 +9,7 @@ async function signIn() {
   if (tokenEntry === undefined) {
     throw Error('cannot get authorization')
   }
-
+  console.log(tokenEntry['SHM_JWT_TOKEN']);
   let headers = getHeaders()
   headers.authorization = 'JwtUser '.concat(tokenEntry['SHM_JWT_TOKEN'])
   axios.defaults.headers.common['Shm-Token'] = tokenEntry['SHM_JWT_TOKEN']
