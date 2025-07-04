@@ -12,8 +12,7 @@ async function signIn() {
   console.log(tokenEntry['SHM_JWT_TOKEN']);
   let headers = getHeaders()
   headers.authorization = 'JwtUser '.concat(tokenEntry['SHM_JWT_TOKEN'])
-  axios.defaults.headers.common['Shm-Token'] = tokenEntry['SHM_JWT_TOKEN']
-  axios.defaults.headers.common['Token'] = tokenEntry['SHM_JWT_TOKEN']
+  headers = Object.assign({}, headers, {'Shm-Token': tokenEntry['SHM_JWT_TOKEN'], 'Token': tokenEntry['SHM_JWT_TOKEN']})
   //hearders['Shm-Token'] = tokenEntry['SHM_JWT_TOKEN']
   //hearders['Token'] = tokenEntry['SHM_JWT_TOKEN']
   console.log(headers);
