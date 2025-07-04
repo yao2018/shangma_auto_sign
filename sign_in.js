@@ -12,7 +12,8 @@ async function signIn() {
 
   let headers = getHeaders()
   headers.authorization = 'JwtUser '.concat(tokenEntry['SHM_JWT_TOKEN'])
-  hearders.Shm-Token = tokenEntry['SHM_JWT_TOKEN']
+  hearders.common['Shm-Token'] = tokenEntry['SHM_JWT_TOKEN']
+  hearders.common['Token'] = tokenEntry['SHM_JWT_TOKEN']
   let new_data = JSON.stringify({"encryptedData":"9llgMgEjl7Rb0a6nPCebKA==","encryptedKey":"b/rvbId0LpbRoQbQeiXklOXN1lo4hQHoOcU2gC/PKMzU8Hlb4iXjAbrZ4XVMDWd8aXK5Yd1d0V+hn4z8P9M0/+XXvdDtn4aWv/6rHmr8IYJSMbhL8c0JcCDzNgz94lKBYmlNYVHfjPLR7lMmY6tAQf1Uj5rvZvNdlnfpjpHsBF4="})
   let data = JSON.stringify({
     //请求参数为：{}，经过AES算法加密之后就是: S1uAYaf/g6oBpv8DWUaQlQ==，在前端js代码中搜索encryptBody关键字
