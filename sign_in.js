@@ -10,6 +10,8 @@ async function signIn() {
   if (tokenEntry === undefined) {
     throw Error('cannot get authorization')
   }
+  let headers = getHeaders()
+
   let login_config = {
     method: 'post',
     maxBodyLength: Infinity,
