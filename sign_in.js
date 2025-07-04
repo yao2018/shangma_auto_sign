@@ -12,9 +12,10 @@ async function signIn() {
 
   let headers = getHeaders()
   headers.authorization = 'JwtUser '.concat(tokenEntry['SHM_JWT_TOKEN'])
-  
-  hearders['Shm-Token'] = tokenEntry['SHM_JWT_TOKEN']
-  hearders['Token'] = tokenEntry['SHM_JWT_TOKEN']
+  axios.defaults.headers.common['Shm-Token'] = tokenEntry['SHM_JWT_TOKEN']
+  axios.defaults.headers.common['Token'] = tokenEntry['SHM_JWT_TOKEN']
+  //hearders['Shm-Token'] = tokenEntry['SHM_JWT_TOKEN']
+  //hearders['Token'] = tokenEntry['SHM_JWT_TOKEN']
   console.log(headers);
   let new_data = JSON.stringify({"encryptedData":"9llgMgEjl7Rb0a6nPCebKA==","encryptedKey":"b/rvbId0LpbRoQbQeiXklOXN1lo4hQHoOcU2gC/PKMzU8Hlb4iXjAbrZ4XVMDWd8aXK5Yd1d0V+hn4z8P9M0/+XXvdDtn4aWv/6rHmr8IYJSMbhL8c0JcCDzNgz94lKBYmlNYVHfjPLR7lMmY6tAQf1Uj5rvZvNdlnfpjpHsBF4="})
   let data = JSON.stringify({
