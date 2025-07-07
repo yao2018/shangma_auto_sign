@@ -19,8 +19,9 @@ async function signIn() {
     headers: headers,
     data: process.env.SM_LOGIN
   }
+  console.log(process.env.SM_LOGIN)
   const login_response = await axios.request(login_config)
-  //console.log(login_response)
+  console.log(login_response)
   let login_token = login_response.data.data.token
 
   headers.authorization = 'JwtUser '.concat(tokenEntry['SHM_JWT_TOKEN'])
