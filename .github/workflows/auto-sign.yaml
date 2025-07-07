@@ -9,6 +9,9 @@ on:
 env:
   SM_USERNAME: ${{ secrets.SM_USERNAME }}
   SM_PASSWORD: ${{ secrets.SM_PASSWORD }}
+  SM_LOGIN: ${{ secrets.SM_LOGIN }}
+  SM_USER_ID: ${{ secrets.SM_USER_ID }}
+
 
 jobs:
   build:
