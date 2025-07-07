@@ -48,9 +48,9 @@ async function signIn() {
     headers: headers,
     data: new_data
   }
-
+  console.log(process.env.SM_USER_ID);
   const response = await axios.request(config)
-  console.log(JSON.stringify(response.data))
+  
   if (response.status !== 200) {
     throw Error('sign in return http status error:' + response.status)
   }
