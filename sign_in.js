@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { getHeaders } from './lib/http_util.js'
 import getCookie from './cookies.js'
+import dotenv from 'dotenv'
+dotenv.config()
 
 async function signIn() {
   const cookies = await getCookie()
