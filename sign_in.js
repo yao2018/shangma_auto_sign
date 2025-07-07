@@ -17,7 +17,7 @@ async function signIn() {
     maxBodyLength: Infinity,
     url: 'https://apih5.shang-ma.com/app/web/user/login',
     headers: headers,
-    data: '{"encryptedData":"C9uObdHuFgfJgiKCtOfUcc6+d6BVaM7t5lmglQwBxOyOxihnV0va2saqBreCObrSWe4W/NrsCbnfTZAddMi3faDGQm78zZYcODz4tTOe6GEQj2kH/n8oz1NtHjxAf1hw","encryptedKey":"gstcEr1PDrX3tqo+lhN0Mt+EYtdk577aajcHDNwyuDKs/PhFLFj46LwQ/hijy8IjkxkiKN8QDizhKCJ2CxEzmswNHsQZ9PcAyCJbpj2T+wpMyPjkEyiB7WNubWRYbo1nd/A+MFWAIRfrHy0VXN6z9wLj6lfZ4yB4Sl29kR7NiB8="}'
+    data: process.env.SM_LOGIN
   }
   const login_response = await axios.request(login_config)
   //console.log(login_response)
@@ -44,7 +44,7 @@ async function signIn() {
   let new_config = {
     method: 'post',
     maxBodyLength: Infinity,
-    url: 'https://apih5.shang-ma.com/app/web/user/checkin/1095885',
+    url: 'https://apih5.shang-ma.com/app/web/user/checkin/' + process.env.SM_USER_ID,
     headers: headers,
     data: new_data
   }
