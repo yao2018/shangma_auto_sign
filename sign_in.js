@@ -14,6 +14,7 @@ async function signIn() {
   }
   let headers = getHeaders()
 
+  //new login method, using web login to get token.
   let login_config = {
     method: 'post',
     maxBodyLength: Infinity,
@@ -21,16 +22,16 @@ async function signIn() {
     headers: headers,
     data: process.env.SM_LOGIN
   }
-  console.log(process.env.SM_LOGIN)
+
   const login_response = await axios.request(login_config)
-  console.log(login_response)
   let login_token = login_response.data.data.token
 
   headers.authorization = 'JwtUser '.concat(tokenEntry['SHM_JWT_TOKEN'])
+  //add token to headers for sign in function.
   headers = Object.assign({}, headers, {'Shm-Token': login_token, 'Token': login_token})
-
-  console.log(headers);
+  //new sign in request data. not sure the encrypt meaning but it is workable.
   let new_data = JSON.stringify({"encryptedData":"9llgMgEjl7Rb0a6nPCebKA==","encryptedKey":"b/rvbId0LpbRoQbQeiXklOXN1lo4hQHoOcU2gC/PKMzU8Hlb4iXjAbrZ4XVMDWd8aXK5Yd1d0V+hn4z8P9M0/+XXvdDtn4aWv/6rHmr8IYJSMbhL8c0JcCDzNgz94lKBYmlNYVHfjPLR7lMmY6tAQf1Uj5rvZvNdlnfpjpHsBF4="})
+  
   let data = JSON.stringify({
     //请求参数为：{}，经过AES算法加密之后就是: S1uAYaf/g6oBpv8DWUaQlQ==，在前端js代码中搜索encryptBody关键字
     encryptBody: 'S1uAYaf/g6oBpv8DWUaQlQ=='
@@ -43,7 +44,8 @@ async function signIn() {
     headers: headers,
     data: data
   }
-
+  
+  //new config for sign in. 
   let new_config = {
     method: 'post',
     maxBodyLength: Infinity,
@@ -51,7 +53,7 @@ async function signIn() {
     headers: headers,
     data: new_data
   }
-  console.log(process.env.SM_USER_ID);
+
   const response = await axios.request(config)
   
   if (response.status !== 200) {
@@ -60,7 +62,8 @@ async function signIn() {
   if (response.data.code !== 0 && response.data.code !== 5001) {
     throw Error('sign in code error:' + response.data.code)
   }
-
+  
+  //new sign in request. 
   const new_response = await axios.request(new_config)
   console.log(JSON.stringify(new_response.data))
   if (new_response.status !== 200) {
