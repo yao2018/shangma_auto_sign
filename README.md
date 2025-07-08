@@ -7,8 +7,12 @@
 ### Use 使用
 
 1. Fork本项目（顺手点Star以示鼓励～🥳）
-2. 在Repo的Setting页面，添加名为上马官网的用户名：`SM_USERNAME`和密码：`SM_PASSWORD`的Secret 
-3. 手动测试运行
+2. //在Repo的Setting页面，添加名为上马官网的用户名：`SM_USERNAME`和密码：`SM_PASSWORD`的Secret
+3. 在Repo的Setting页面，Secrets and Variables添加如下actions变量：登陆信息`SM_LOGIN`和上马用户id：`SM_USER_ID`
+    登陆信息获取方式：登陆上马网： https://static.shang-ma.com/web/login/index.html
+
+
+4. 手动测试运行
 <img width="1444" alt="image" src="https://github.com/zhaohongxuan/shangma_auto_sign/assets/8613196/695683c9-fbc2-4cab-9ef8-41e2ddf59b78">
 在控制台应该能看到 `签到成功/请勿重复签到` 的提示
 <img width="990" alt="image" src="https://github.com/zhaohongxuan/shangma_auto_sign/assets/8613196/399e89f7-2ad6-486e-9e67-8953564ec528">
