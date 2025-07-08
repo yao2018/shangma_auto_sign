@@ -5,13 +5,13 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 async function signIn() {
-  const cookies = await getCookie()
-  console.log(cookies)
+  //const cookies = await getCookie()
+  //console.log(cookies)
 
-  const tokenEntry = cookies.find(entry => entry['SHM_JWT_TOKEN'] !== undefined)
-  if (tokenEntry === undefined) {
-    throw Error('cannot get authorization')
-  }
+  //const tokenEntry = cookies.find(entry => entry['SHM_JWT_TOKEN'] !== undefined)
+  // if (tokenEntry === undefined) {
+  //   throw Error('cannot get authorization')
+  // }
   let headers = getHeaders()
 
   //new login method, using web login to get token.
@@ -26,7 +26,7 @@ async function signIn() {
   const login_response = await axios.request(login_config)
   let login_token = login_response.data.data.token
 
-  headers.authorization = 'JwtUser '.concat(tokenEntry['SHM_JWT_TOKEN'])
+  //headers.authorization = 'JwtUser '.concat(tokenEntry['SHM_JWT_TOKEN'])
   //add token to headers for sign in function.
   headers = Object.assign({}, headers, {'Shm-Token': login_token, 'Token': login_token})
   //new sign in request data. not sure the encrypt meaning but it is workable.
@@ -54,14 +54,14 @@ async function signIn() {
     data: new_data
   }
 
-  const response = await axios.request(config)
+  // const response = await axios.request(config)
   
-  if (response.status !== 200) {
-    throw Error('sign in return http status error:' + response.status)
-  }
-  if (response.data.code !== 0 && response.data.code !== 5001) {
-    throw Error('sign in code error:' + response.data.code)
-  }
+  // if (response.status !== 200) {
+  //   throw Error('sign in return http status error:' + response.status)
+  // }
+  // if (response.data.code !== 0 && response.data.code !== 5001) {
+  //   throw Error('sign in code error:' + response.data.code)
+  // }
   
   //new sign in request. 
   const new_response = await axios.request(new_config)
